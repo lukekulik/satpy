@@ -237,8 +237,7 @@ def read_reader_config(config_files):
     LOG.debug('Reading ' + str(config_files))
     for config_file in config_files:
         with open(config_file) as fd:
-            conf.update(yaml.load(fd.read()))
-
+            conf.update(yaml.load(fd.read())) # for abi_l1b reader this part of code will fail if h5netcdf is not installed, without giving an indication that this dependency is a problem
     try:
         reader_info = conf['reader']
     except KeyError:
